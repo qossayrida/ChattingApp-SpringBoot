@@ -1,0 +1,35 @@
+
+services:
+
+##############################################################
+#                      mongo DB container                    #
+##############################################################
+  mongodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: chatapp
+      MONGO_INITDB_ROOT_PASSWORD: chatapp
+
+
+##############################################################
+#                   mongo-express container                  #
+##############################################################
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: chatapp
+      ME_CONFIG_MONGODB_ADMINPASSWORD: chatapp
+      ME_CONFIG_MONGODB_SERVER: mongodb
+
+
+volumes:
+  mongo: {}
