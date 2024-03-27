@@ -18,8 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatController {
 
-    private final SimpMessagingTemplate messagingTemplate;
+
     private final ChatMessageService chatMessageService;
+    private final SimpMessagingTemplate messagingTemplate;
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessage chatMessage) {

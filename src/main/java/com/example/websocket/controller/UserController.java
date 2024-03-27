@@ -3,7 +3,6 @@ package com.example.websocket.controller;
 import com.example.websocket.entity.*;
 import com.example.websocket.service.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -17,23 +16,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
 
     @MessageMapping("/user.addUser")
     @SendTo("/user/public")
-    public User addUser(
-            @Payload User user
-    ) {
+    public User addUser(@Payload User user) {
         userService.saveUser(user);
         return user;
     }
 
     @MessageMapping("/user.disconnectUser")
     @SendTo("/user/public")
-    public User disconnectUser(
-            @Payload User user
-    ) {
+    public User disconnectUser(@Payload User user) {
         userService.disconnect(user);
         return user;
     }

@@ -24,10 +24,11 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.setUserDestinationPrefix("/user");
     }
 
+
     @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
+    public void registerStompEndpoints(StompEndpointRegistry registry) {    //   Simple Text Oriented Messaging
         registry.addEndpoint("/ws")
-                .withSockJS();
+                .withSockJS();                                              //   in case WebSocket is not available
     }
 
     @Override
@@ -38,6 +39,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         converter.setObjectMapper(new ObjectMapper());
         converter.setContentTypeResolver(resolver);
         messageConverters.add(converter);
-        return false;
+        return false; //the default converters should be added
     }
 }
