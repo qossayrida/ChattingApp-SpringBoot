@@ -1,5 +1,6 @@
 package com.example.websocket.entity;
 
+import com.example.websocket.utilities.Status;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;

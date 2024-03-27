@@ -15,11 +15,7 @@ public class ChatRoomService {
 
     @Autowired
     ChatRoomRepository chatRoomRepository;
-    public Optional<String> getChatRoomId(
-            String senderId,
-            String recipientId,
-            boolean createNewRoomIfNotExists
-    ) {
+    public Optional<String> getChatRoomId(String senderId, String recipientId, boolean createNewRoomIfNotExists){
         return chatRoomRepository
                 .findBySenderIdAndRecipientId(senderId, recipientId)
                 .map(ChatRoom::getChatId)
@@ -34,7 +30,7 @@ public class ChatRoomService {
     }
 
     private String createChatId(String senderId, String recipientId) {
-        var chatId = String.format("%s_%s", senderId, recipientId);
+        String chatId = String.format("%s_%s", senderId, recipientId);
 
         ChatRoom senderRecipient = ChatRoom
                 .builder()

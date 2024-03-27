@@ -11,6 +11,5 @@ spring:
       database: chat_app
       authentication-database: admin
 
-
 server:
   port: 8088
