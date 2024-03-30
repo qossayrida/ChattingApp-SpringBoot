@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.websocket.entity.*;
 import com.example.websocket.repository.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -15,40 +16,30 @@ public class ChatRoomService {
 
     @Autowired
     ChatRoomRepository chatRoomRepository;
-    public Optional<String> getChatRoomId(String senderId, String recipientId, boolean createNewRoomIfNotExists){
+    public Optional<String> getChatRoomId(String userAId, String userBId, boolean createNewRoomIfNotExists){
         return chatRoomRepository
-                .findBySenderIdAndRecipientId(senderId, recipientId)
-                .map(ChatRoom::getChatId)
+                .findChatRoomByUsers(userAId, userBId)
+                .map(ChatRoom::getId)
                 .or(() -> {
                     if(createNewRoomIfNotExists) {
-                        String chatId = createChatId(senderId, recipientId);
-                        return Optional.of(chatId);
+                        return createChatRoom(userAId, userBId);
                     }
-
                     return  Optional.empty();
                 });
     }
 
-    private String createChatId(String senderId, String recipientId) {
-        String chatId = String.format("%s_%s", senderId, recipientId);
-
+    private Optional<String> createChatRoom(String userAId, String userBId) {
         ChatRoom senderRecipient = ChatRoom
                 .builder()
-                .chatId(chatId)
-                .senderId(senderId)
-                .recipientId(recipientId)
-                .build();
-
-        ChatRoom recipientSender = ChatRoom
-                .builder()
-                .chatId(chatId)
-                .senderId(recipientId)
-                .recipientId(senderId)
+                .userAId(userAId)
+                .userBId(userBId)
+                .creationDate(new Date())
                 .build();
 
         chatRoomRepository.save(senderRecipient);
-        chatRoomRepository.save(recipientSender);
 
-        return chatId;
+        return chatRoomRepository
+                .findChatRoomByUsers(userAId, userBId)
+                .map(ChatRoom::getId);
     }
 }

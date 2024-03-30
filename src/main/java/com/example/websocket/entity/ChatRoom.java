@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ChatRoom {
     @Id
     private String id;
-    private String chatId;
-    private String senderId;
-    private String recipientId;
+    private String userAId;
+    private String userBId;
+    private Date creationDate;
 }
