@@ -1,7 +1,15 @@
 spring:
+
   application:
     name:
       websocket
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: myGroup
+
+
   data:
     mongodb:
       username: chatapp
