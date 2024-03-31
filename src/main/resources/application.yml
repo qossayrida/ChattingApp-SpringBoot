@@ -7,7 +7,7 @@ spring:
       username: chatapp
       password: chatapp
       host: localhost
-      port: 27017
+      port: 27018
       database: chat_app
       authentication-database: admin
 

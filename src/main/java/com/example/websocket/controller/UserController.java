@@ -20,14 +20,14 @@ public class UserController {
 
     private final UserService userService;
 
-    @MessageMapping("/user.addUser")
+    @MessageMapping("/addUser")
     @SendTo("/user/public")
     public User addUser(@Payload User user) {
         userService.saveUser(user);
         return user;
     }
 
-    @MessageMapping("/user.disconnectUser")
+    @MessageMapping("/disconnectUser")
     @SendTo("/user/public")
     public User disconnectUser(@Payload User user) {
         userService.disconnect(user);
@@ -36,6 +36,7 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> findConnectedUsers() {
+        System.out.println("This for debug: the request for connected user done ");
         return ResponseEntity.ok(userService.findConnectedUsers());
     }
 }

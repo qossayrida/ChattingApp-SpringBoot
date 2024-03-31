@@ -2,22 +2,22 @@ version: '3'
 
 services:
 
-##############################################################
-#                      mongo DB container                    #
-##############################################################
+  ##############################################################
+  #                      mongo DB container                    #
+  ##############################################################
   mongodb:
     image: mongo
     container_name: mongo_db
     ports:
-      - "27017:27017"
+      - "27018:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: chatapp
       MONGO_INITDB_ROOT_PASSWORD: chatapp
 
 
-##############################################################
-#                   mongo-express container                  #
-##############################################################
+  ##############################################################
+  #                   mongo-express container                  #
+  ##############################################################
   mongo-express:
     image: mongo-express
     container_name: mongo_express
@@ -32,4 +32,3 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongodb
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
-
