@@ -16,7 +16,6 @@ import java.util.List;
 
 @Configuration
 @EnableWebSocketMessageBroker
-@CrossOrigin
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
@@ -29,6 +28,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {    //   Simple Text Oriented Messaging
         registry.addEndpoint("/ws")
+                .setAllowedOriginPatterns("*")
                 .setAllowedOrigins("http://localhost:3000")
                 .withSockJS();                                              //   in case WebSocket is not available
     }
