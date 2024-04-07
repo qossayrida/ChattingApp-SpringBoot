@@ -32,3 +32,14 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongodb
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
+
+
+#  keycloak:
+#    image: quay.io/keycloak/keycloak
+#    container_name: keycloak
+#    command: ["start-dev"]
+#    ports:
+#      - "9090:8080"
+#    environment:
+#      - KEYCLOAK_ADMIN=admin
+#      - KEYCLOAK_ADMIN_PASSWORD=admin

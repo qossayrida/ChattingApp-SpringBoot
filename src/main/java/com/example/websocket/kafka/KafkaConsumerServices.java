@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service
+//@Service
 @Slf4j
 public class KafkaConsumerServices {
     private static final String TOPIC = "public-chats";

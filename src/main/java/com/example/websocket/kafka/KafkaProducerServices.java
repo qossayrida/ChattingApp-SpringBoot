@@ -4,7 +4,7 @@ import com.example.websocket.entity.ChatMessage;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class KafkaProducerServices {
     private static final String TOPIC = "public-chats";
     private final KafkaTemplate<String, ChatMessage> kafkaTemplate;

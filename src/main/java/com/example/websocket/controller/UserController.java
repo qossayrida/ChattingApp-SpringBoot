@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final EmailService emailService;
 
     @MessageMapping("/addUser")
     @SendTo("/user/public")
@@ -32,6 +34,12 @@ public class UserController {
     public User disconnectUser(@Payload User user) {
         userService.disconnect(user);
         return user;
+    }
+
+    @GetMapping("/register")
+    public String register(@RequestParam String email) {
+        emailService.sendRegistrationEmail(email);
+        return "Registration email sent!";
     }
 
     @GetMapping("/users")
